@@ -48,13 +48,13 @@ jobs:
       - name: Build and push database
         uses: docker/build-push-action@v3
         with:
-          context: ./database-folder
+          context: ./database
           tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-database:latest
           push: ${{ github.ref == 'refs/heads/main' }}
 
-      - name: Build and push httpd
+      - name: Build and push http
         uses: docker/build-push-action@v3
         with:
-          context: ./httpd-folder
+          context: ./http-server
           tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-httpd:latest
           push: ${{ github.ref == 'refs/heads/main' }}
