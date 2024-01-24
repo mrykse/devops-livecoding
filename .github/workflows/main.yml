@@ -59,3 +59,4 @@ jobs:
           context: ./http-server
           tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-httpd:latest
           push: true
+
