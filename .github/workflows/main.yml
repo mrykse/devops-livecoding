@@ -20,5 +20,8 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
 
+      - name: Print Current Directory
+        run: pwd
+
       - name: Build and test with Maven
-        run: mvn clean install
+        run: mvn -f simple-api/pom.xml clean install
