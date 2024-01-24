@@ -24,7 +24,7 @@ jobs:
         run: pwd
 
       - name: Build and test with Maven
-        run: mvn -f simple-api/pom.xml clean install
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=tp-devops-mk_tp2 -Dsonar.organization=tp-devops-mk -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}  --file ./simple-api/pom.xml
 
   build-and-push-docker-image:
 
