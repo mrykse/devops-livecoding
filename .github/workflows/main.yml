@@ -7,7 +7,6 @@ on:
       - develop
   pull_request:
 
-
 jobs:
   test-backend:
     runs-on: ubuntu-22.04
@@ -28,6 +27,7 @@ jobs:
         run: mvn -B verify sonar:sonar -Dsonar.projectKey=tp-devops-mk_tp2 -Dsonar.organization=tp-devops-mk -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}  --file ./simple-api/pom.xml
 
   build-and-push-docker-image:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-22.04
 
     needs: test-backend
@@ -44,18 +44,18 @@ jobs:
         with:
           context: ./simple-api
           tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-simple-api:latest
-          push: ${{ github.ref == 'refs/heads/main' }}
+          push: true
 
       - name: Build and push database
         uses: docker/build-push-action@v3
         with:
           context: ./database
           tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-database:latest
-          push: ${{ github.ref == 'refs/heads/main' }}
+          push: true
 
       - name: Build and push http
         uses: docker/build-push-action@v3
         with:
           context: ./http-server
           tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-httpd:latest
-          push: ${{ github.ref == 'refs/heads/main' }}
+          push: true
