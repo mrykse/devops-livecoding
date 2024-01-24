@@ -38,11 +38,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2.5.0
 
-      - name: Build and push backend
+      - name: Build image and push backend
         uses: docker/build-push-action@v3
         with:
+          # relative path to the place where source code with Dockerfile is located
           context: ./simple-api
+          # Note: tags has to be all lower-case
           tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-simple-api:latest
+          # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Build and push database
