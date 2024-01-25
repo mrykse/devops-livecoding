@@ -1,9 +1,10 @@
----
-- name : Copying file
-  ansible.builtin.copy:
-    src: ./roles/launching/tasks/.env
-    dest: /home/centos/.env
-- name: Run App
-  ansible.builtin.shell:
-    name: launching
-    cmd: docker run mrykse/tp-devops-simple-api --env-file /home/centos/.env --net my-network api
+- name: Run app
+  docker_container:
+    name: my-api
+    image: mrykse/tp-devops-simple-api
+    env:
+      MYAPP_HOME=/opt/myapp
+    networks:
+      - name: my-network
+  vars:
+    ansible_python_interpreter: /usr/bin/python3

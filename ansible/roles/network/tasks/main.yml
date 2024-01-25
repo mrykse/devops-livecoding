@@ -1,4 +1,6 @@
 ---
 - name: Create a network
-  community.docker.docker_network:
+  docker_network:
     name: my-network
+  vars:
+    ansible_python_interpreter: /usr/bin/python3

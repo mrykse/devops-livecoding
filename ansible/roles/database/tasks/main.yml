@@ -1,8 +1,12 @@
----
-- name: Run Database
+- name: Run database
   docker_container:
-    name: database
+    name: my-db
     image: mrykse/tp-devops-database
-    env_file: .env
+    env:
+      POSTGRES_DB=db
+      POSTGRES_USER=user
+      POSTGRES_PASSWORD=pwd
     networks:
       - name: my-network
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
