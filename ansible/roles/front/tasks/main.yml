@@ -1,10 +1,8 @@
-- name: Run proxy
+- name: Run app
   docker_container:
-    name: my-proxy
-    image: mrykse/tp-devops-httpd
+    name: my-front
+    image: mrykse/front:essai
     networks:
       - name: my-network
-    published_ports:
-      - "80:80"
   vars:
     ansible_python_interpreter: /usr/bin/python3
