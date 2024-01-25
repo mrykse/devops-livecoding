@@ -1,4 +1,4 @@
-- name: Run app
+- name: Run front
   docker_container:
     name: my-front
     image: mrykse/front:essai
