@@ -20,14 +20,23 @@ services:
   httpd:
     build: ./http-server
     ports:
-      - "80:80"
+      - "81:80"
     networks:
       - my-network
     depends_on:
       - backend
+    volumes:
+      - /Users/meryem/Desktop/devops-front:/var/www/html
+
+  front:
+    build: ./front
+    container_name: my-front
+    networks:
+      - my-network
 
 volumes:
   db-volume:
 
 networks:
   my-network:
+
