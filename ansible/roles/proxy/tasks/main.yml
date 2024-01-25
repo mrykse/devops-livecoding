@@ -1,0 +1,7 @@
+---
+- name: Run HTTPD
+  docker_container:
+    name: mrykse/tp-devops-httpd
+    image: jdoe/my-httpd:1.0
+    networks:
+      - name: my-network

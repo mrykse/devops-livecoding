@@ -1,0 +1,8 @@
+---
+- name: Run Database
+  docker_container:
+    name: database
+    image: mrykse/tp-devops-database
+    env_file: .env
+    networks:
+      - name: my-network
